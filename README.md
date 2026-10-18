@@ -8,7 +8,7 @@
   - 👩‍💻 Priti Kumari - 6606770
   - 👩‍💻 Prerna Rajput - 6606532 
 - **🛠️ Technology Stack:** HTML5, Tailwind CSS, Vanilla JavaScript (ES6+), Leaflet.js, Chart.js, FontAwesome
-- **teacher Project Guide/Mentor:** Mrs. Aarshi Gupta
+- **Project Mentor:** Mrs. Aarshi Gupta
 - **🎯 Project Objective:** SmartRoute is an enterprise-grade pan-India logistics and fleet management command center. It bridges theoretical Data Structures and Algorithms (DSA)—specifically Graph Theory (Dijkstra’s Algorithm) and Min-Heap Priority Queues—with real-world enterprise routing, automated dispatching, and dynamic environmental simulations.
 
 ## ⚠️ 2. Problem Statement
@@ -47,3 +47,44 @@ Major-Project/
     ├── Screenshot 2026-10-17 195439.png
     ├── Screenshot 2026-10-17 195449.png
     └── Screenshot 2026-10-17 195559.jpg
+
+## 🚀 6. Installation and Execution
+To run and test the project locally, follow these steps:
+1. **📥 Clone or Download:** Clone the repository or extract the project ZIP archive.
+2. **📂 Open Source Code:** Navigate to the `Major-Project/src/` directory.
+3. **🌐 Run Locally:**
+   - Open `index.html` directly in any modern web browser (Chrome, Firefox, Edge).
+   - Alternatively, open the folder in **Visual Studio Code** and use the **Live Server** extension to launch the dashboard at `http://127.0.0.1:5500`.
+
+## 📸 7. Screenshots / Output
+- **🖥️ Dashboard Command Center:** Live pan-India network mapping and queue backlog statistics.
+- **📈 Route Analytics Card:** Real-time distance, speed, ETA, and cost metrics for selected routes.
+- **🚚 National Fleet Command:** Vehicle tracking, fuel levels, and current cargo load statuses.
+- **📋 Tracking Logs:** Comprehensive dispatch archives with customer and delivery details.
+- **📉 Performance Analytics:** Interactive gradient trend lines across custom time ranges.
+
+## 🧠 8. DSA Concepts Used
+- **🔤 Arrays and Strings:** Managing hub coordinate lookups, string formatting for addresses, and data table filtering.
+- **📥 Stack and Queue (Min-Heap Logic):** Implementing custom Priority Queue architecture to dynamically sort incoming dispatches by urgency levels (P1 to P3).
+- **🕸️ Trees and Graphs:** Modeling the pan-India highway system as an undirected weighted Graph where cities represent Nodes and highways represent Edges.
+- **🔍 Searching and Sorting Algorithms:** Executing Dijkstra’s Shortest Path Algorithm for cost-effective hub routing.
+- **⚡ Time and Space Complexity:** Maintaining efficient $O(E \log V)$ traversal efficiency for instantaneous UI updates.
+
+## 💡 9. Learning Outcomes
+- Practical implementation of complex Data Structures (Graphs and Min-Heaps) within real-world web applications.
+- Integrating third-party mapping (Leaflet.js) and charting (Chart.js) libraries for robust data visualization.
+- Applying defensive programming techniques and modular state management in Vanilla JavaScript.
+
+## 🔮 10. Future Scope
+- **☁️ Backend Integration:** Connecting Node.js and MongoDB for secure persistent user sessions and live database records.
+- **🛰️ GPS Telematics Integration:** Linking live vehicle hardware APIs to stream actual truck coordinates directly onto the Leaflet map.
+- **🤖 AI Route Optimization:** Incorporating machine learning models for predictive traffic analysis and fuel-efficient dispatching.
+
+## 📚 11. References
+- Leaflet.js Documentation & OpenStreetMap Tile Usage Guidelines
+- Chart.js Official Documentation
+- Tailwind CSS Framework Reference
+- Introduction to Algorithms (CLRS) — Graph Theory & Shortest Path Modules
+
+## ⚖️ 12. License
+This project is developed for academic evaluation purposes under the curriculum of Rungta Group of Institutions, Bhilai.
