@@ -8,7 +8,7 @@
   - 👩‍💻 Priti Kumari - 6606770
   - 👩‍💻 Prerna Rajput - 6606532 
 - **🛠️ Technology Stack:** HTML5, Tailwind CSS, Vanilla JavaScript (ES6+), Leaflet.js, Chart.js, FontAwesome
-- **Project Mentor:** Mrs. Aarshi Gupta
+- **🔥Project Mentor:** Mrs. Aarshi Gupta
 - **🎯 Project Objective:** SmartRoute is an enterprise-grade pan-India logistics and fleet management command center. It bridges theoretical Data Structures and Algorithms (DSA)—specifically Graph Theory (Dijkstra’s Algorithm) and Min-Heap Priority Queues—with real-world enterprise routing, automated dispatching, and dynamic environmental simulations.
 
 ## ⚠️ 2. Problem Statement
