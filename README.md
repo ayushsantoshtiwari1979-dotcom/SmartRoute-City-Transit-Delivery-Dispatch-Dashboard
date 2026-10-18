@@ -64,18 +64,23 @@ To run and test the project locally, follow these steps:
 ![Dashboard Command Center](screenshots/Screenshot%202026-10-17%20194904.png)
 
 **📈 Route Analytics Card:** Real-time distance, speed, ETA, and cost metrics for selected routes.
+
 ![Route Analytics Card](screenshots/Screenshot%202026-10-17%20195257.png)
 
 **🚚 National Fleet Command:** Vehicle tracking, fuel levels, and current cargo load statuses.
+
 ![National Fleet Command](screenshots/Screenshot%202026-10-17%20195429.png)
 
 **📋 Tracking Logs:** Comprehensive dispatch archives with customer and delivery details.
+
 ![Tracking Logs](screenshots/Screenshot%202026-10-17%20195439.png)
 
 **📉 Performance Analytics:** Interactive gradient trend lines across custom time ranges.
+
 ![Performance Analytics 1](screenshots/Screenshot%202026-10-17%20195449.png)
 
 **📊 Additional Analytics & UI View:** 
+
 ![Additional View](screenshots/Screenshot%202026-10-17%20195559.png)
 
 ## 🧠 8. DSA Concepts Used
