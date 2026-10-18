@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartRoute | Pan-India Logistics</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Leaflet JS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-900 text-white font-sans h-screen flex overflow-hidden selection:bg-blue-500">
+
+    <!-- Add Order Modal -->
+    <div id="add-order-modal" class="hidden fixed inset-0 bg-black/80 flex items-center justify-center z-[9999] backdrop-blur-sm">
+        <div class="bg-gray-800 p-6 rounded-xl border border-gray-700 w-[550px] shadow-2xl max-h-[90vh] overflow-y-auto custom-scroll">
+            <h2 class="text-xl font-bold mb-4 border-b border-gray-700 pb-2"><i class="fa-solid fa-box-open text-blue-500 mr-2"></i> Register New Dispatch</h2>
+            <form id="order-form" class="space-y-4">
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm text-gray-400 mb-1">Customer Name</label>
+                        <input type="text" id="input-name" required placeholder="e.g. Ayush Tiwari" class="w-full bg-gray-900 border border-gray-600 rounded px-3 py-2 text-white outline-none focus:border-blue-500">
+                    </div>
+                    <div>
+                        <label class="block text-sm text-gray-400 mb-1">Contact Number</label>
+                        <input type="tel" id="input-phone" required placeholder="+91 XXXXX XXXXX" class="w-full bg-gray-900 border border-gray-600 rounded px-3 py-2 text-white outline-none focus:border-blue-500">
+                    </div>
+                </div>
+                
+                <!-- NEW EMAIL FIELD -->
+                <div>
+                    <label class="block text-sm text-gray-400 mb-1">Email Address</label>
+                    <input type="email" id="input-email" required placeholder="e.g. customer@example.com" class="w-full bg-gray-900 border border-gray-600 rounded px-3 py-2 text-white outline-none focus:border-blue-500">
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm text-gray-400 mb-1">Package Item</label>
+                        <input type="text" id="input-item" required placeholder="e.g. Laptops, Medical Kits" class="w-full bg-gray-900 border border-gray-600 rounded px-3 py-2 text-white outline-none focus:border-blue-500">
+                    </div>
+                    <div>
+                        <label class="block text-sm text-gray-400 mb-1">Package Photo</label>
+                        <input type="file" id="input-photo" accept="image/*" class="w-full bg-gray-900 border border-gray-600 rounded px-3 py-1.5 text-white text-sm cursor-pointer file:mr-3 file:py-1 file:px-2 file:rounded file:border-0 file:text-xs file:bg-blue-600 file:text-white hover:file:bg-blue-500">
+                    </div>
+                </div>
+
+                <div class="bg-gray-900/50 p-3 rounded-lg border border-gray-700 space-y-3">
+                    <div>
+                        <label class="block text-sm text-gray-400 mb-1">Destination City (All India)</label>
+                        <select id="input-hub" class="w-full bg-gray-800 border border-gray-600 rounded px-3 py-2 text-white outline-none focus:border-blue-500">
+                            <option value="Agartala">Agartala</option>
+                            <option value="Agra">Agra</option>
+                            <option value="Ahmedabad">Ahmedabad</option>
+                            <option value="Aizawl">Aizawl</option>
+                            <option value="Ajmer">Ajmer</option>
+                            <option value="Aligarh">Aligarh</option>
+                            <option value="Allahabad">Allahabad</option>
+                            <option value="Ambala">Ambala</option>
+                            <option value="Amravati">Amravati</option>
+                            <option value="Amritsar">Amritsar</option>
+                            <option value="Asansol">Asansol</option>
+                            <option value="Aurangabad">Aurangabad</option>
+                            <option value="Bangalore">Bangalore</option>
+                            <option value="Bareilly">Bareilly</option>
+                            <option value="Belagavi">Belagavi</option>
+                            <option value="Bhatapara">Bhatapara</option>
+                            <option value="Bhavnagar">Bhavnagar</option>
+                            <option value="Bhilai">Bhilai</option>
+                            <option value="Bhopal">Bhopal</option>
+                            <option value="Bhubaneswar">Bhubaneswar</option>
+                            <option value="Bikaner">Bikaner</option>
+                            <option value="Bilaspur">Bilaspur</option>
+                            <option value="Chandigarh">Chandigarh</option>
+                            <option value="Chennai">Chennai</option>
+                            <option value="Coimbatore">Coimbatore</option>
+                            <option value="Cuttack">Cuttack</option>
+                            <option value="Dehradun">Dehradun</option>
+                            <option value="Delhi">Delhi</option>
+                            <option value="Dhanbad">Dhanbad</option>
+                            <option value="Durg">Durg</option>
+                            <option value="Durgapur">Durgapur</option>
+                            <option value="Erode">Erode</option>
+                            <option value="Faridabad">Faridabad</option>
+                            <option value="Gaya">Gaya</option>
+                            <option value="Ghaziabad">Ghaziabad</option>
+                            <option value="Gorakhpur">Gorakhpur</option>
+                            <option value="Gulbarga">Gulbarga</option>
+                            <option value="Guntur">Guntur</option>
+                            <option value="Gurgaon">Gurgaon</option>
+                            <option value="Guwahati">Guwahati</option>
+                            <option value="Gwalior">Gwalior</option>
+                            <option value="Hubli">Hubli</option>
+                            <option value="Hyderabad">Hyderabad</option>
+                            <option value="Imphal">Imphal</option>
+                            <option value="Indore">Indore</option>
+                            <option value="Jabalpur">Jabalpur</option>
+                            <option value="Jaipur">Jaipur</option>
+                            <option value="Jalandhar">Jalandhar</option>
+                            <option value="Jalgaon">Jalgaon</option>
+                            <option value="Jammu">Jammu</option>
+                            <option value="Jamnagar">Jamnagar</option>
+                            <option value="Jamshedpur">Jamshedpur</option>
+                            <option value="Jhansi">Jhansi</option>
+                            <option value="Jodhpur">Jodhpur</option>
+                            <option value="Kakinada">Kakinada</option>
+                            <option value="Kannur">Kannur</option>
+                            <option value="Kanpur">Kanpur</option>
+                            <option value="Kharagpur">Kharagpur</option>
+                            <option value="Kochi">Kochi</option>
+                            <option value="Kolhapur">Kolhapur</option>
+                            <option value="Kolkata">Kolkata</option>
+                            <option value="Kollam">Kollam</option>
+                            <option value="Korba">Korba</option>
+                            <option value="Kota">Kota</option>
+                            <option value="Kozhikode">Kozhikode</option>
+                            <option value="Kurnool">Kurnool</option>
+                            <option value="Lucknow">Lucknow</option>
+                            <option value="Ludhiana">Ludhiana</option>
+                            <option value="Madurai">Madurai</option>
+                            <option value="Mangalore">Mangalore</option>
+                            <option value="Mathura">Mathura</option>
+                            <option value="Meerut">Meerut</option>
+                            <option value="Moradabad">Moradabad</option>
+                            <option value="Mumbai">Mumbai</option>
+                            <option value="Mysuru">Mysuru</option>
+                            <option value="Nagpur">Nagpur</option>
+                            <option value="Nanded">Nanded</option>
+                            <option value="Nashik">Nashik</option>
+                            <option value="Nellore">Nellore</option>
+                            <option value="Noida">Noida</option>
+                            <option value="Patiala">Patiala</option>
+                            <option value="Patna">Patna</option>
+                            <option value="Pondicherry">Pondicherry</option>
+                            <option value="Pune">Pune</option>
+                            <option value="Raigarh">Raigarh</option>
+                            <option value="Raipur (HQ)">Raipur (HQ)</option>
+                            <option value="Rajahmundry">Rajahmundry</option>
+                            <option value="Rajkot">Rajkot</option>
+                            <option value="Rajnandgaon">Rajnandgaon</option>
+                            <option value="Ranchi">Ranchi</option>
+                            <option value="Rourkela">Rourkela</option>
+                            <option value="Saharanpur">Saharanpur</option>
+                            <option value="Salem">Salem</option>
+                            <option value="Sangli">Sangli</option>
+                            <option value="Shillong">Shillong</option>
+                            <option value="Shimla">Shimla</option>
+                            <option value="Siliguri">Siliguri</option>
+                            <option value="Solapur">Solapur</option>
+                            <option value="Srinagar">Srinagar</option>
+                            <option value="Surat">Surat</option>
+                            <option value="Thiruvananthapuram">Thiruvananthapuram</option>
+                            <option value="Thrissur">Thrissur</option>
+                            <option value="Tilda-Neora">Tilda-Neora</option>
+                            <option value="Tiruchirappalli">Tiruchirappalli</option>
+                            <option value="Tirunelveli">Tirunelveli</option>
+                            <option value="Tirupati">Tirupati</option>
+                            <option value="Tiruppur">Tiruppur</option>
+                            <option value="Udaipur">Udaipur</option>
+                            <option value="Ujjain">Ujjain</option>
+                            <option value="Vadodara">Vadodara</option>
+                            <option value="Varanasi">Varanasi</option>
+                            <option value="Vellore">Vellore</option>
+                            <option value="Vijayawada">Vijayawada</option>
+                            <option value="Visakhapatnam">Visakhapatnam</option>
+                            <option value="Warangal">Warangal</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm text-gray-400 mb-1">Exact Local Address (Anywhere in India)</label>
+                        <textarea id="input-address" required rows="2" placeholder="e.g. House No. 12, ABC Society, XYZ Road, Pincode-123456" class="w-full bg-gray-800 border border-gray-600 rounded px-3 py-2 text-white outline-none focus:border-blue-500 resize-none"></textarea>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm text-gray-400 mb-1">Urgency</label>
+                        <select id="input-priority" class="w-full bg-gray-900 border border-gray-600 rounded px-3 py-2 text-white outline-none">
+                            <option value="1">Urgent (P1)</option>
+                            <option value="2">Express (P2)</option>
+                            <option value="3">Standard (P3)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm text-gray-400 mb-1">Package Category</label>
+                        <select id="input-type" class="w-full bg-gray-900 border border-gray-600 rounded px-3 py-2 text-white outline-none">
+                            <option value="Standard">Standard Goods</option>
+                            <option value="Fragile">Fragile</option>
+                            <option value="Cold Chain">Cold Chain</option>
+                            <option value="Hazmat">Hazmat</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="flex justify-end gap-3 mt-6 pt-4 border-t border-gray-700">
+                    <button type="button" id="close-modal-btn" class="px-4 py-2 hover:bg-gray-700 border border-gray-600 rounded text-sm">Cancel</button>
+                    <button type="submit" class="px-6 py-2 bg-blue-600 hover:bg-blue-500 rounded text-sm font-bold shadow-lg shadow-blue-500/30">Add to Queue</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Customer Support Modal -->
+    <div id="support-modal" class="hidden fixed inset-0 bg-black/80 flex items-center justify-center z-[9999] backdrop-blur-sm">
+        <div class="bg-gray-800 p-6 rounded-xl border border-gray-700 w-[400px] shadow-2xl">
+            <h2 class="text-xl font-bold mb-4 border-b border-gray-700 pb-2"><i class="fa-solid fa-headset text-blue-500 mr-2"></i> Customer Support</h2>
+            <form id="support-form" class="space-y-4">
+                <div>
+                    <label class="block text-sm text-gray-400 mb-1">Describe your issue</label>
+                    <textarea id="support-query" required rows="4" placeholder="How can we help you?" class="w-full bg-gray-900 border border-gray-600 rounded px-3 py-2 text-white outline-none focus:border-blue-500 resize-none"></textarea>
+                </div>
+                <div class="flex justify-end gap-3 mt-4">
+                    <button type="button" id="close-support-btn" class="px-4 py-2 hover:bg-gray-700 border border-gray-600 rounded text-sm">Cancel</button>
+                    <button type="submit" class="px-6 py-2 bg-green-600 hover:bg-green-500 rounded text-sm font-bold shadow-lg shadow-green-500/30">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Sidebar -->
+    <aside class="w-64 bg-gray-800 border-r border-gray-700 flex flex-col z-20 shadow-2xl justify-between">
+        <div>
+            <div class="h-16 flex items-center px-6 border-b border-gray-700 bg-gray-900/50">
+                <i class="fa-solid fa-route text-blue-500 text-2xl mr-3"></i>
+                <h1 class="text-xl font-bold tracking-wide">SmartRoute</h1>
+            </div>
+            <nav class="py-6 px-4 space-y-2">
+                <button data-target="view-dashboard" class="nav-btn w-full text-left flex items-center px-4 py-3 bg-blue-600 rounded-lg text-white font-medium transition"><i class="fa-solid fa-table-columns w-6"></i> Dashboard</button>
+                <button data-target="view-fleet" class="nav-btn w-full text-left flex items-center px-4 py-3 text-gray-400 hover:bg-gray-700 hover:text-white rounded-lg font-medium transition"><i class="fa-solid fa-truck-fast w-6"></i> Fleet Status</button>
+                <button data-target="view-tracking" class="nav-btn w-full text-left flex items-center px-4 py-3 text-gray-400 hover:bg-gray-700 hover:text-white rounded-lg font-medium transition"><i class="fa-solid fa-clock-rotate-left w-6"></i> Tracking Logs</button>
+                <button data-target="view-analytics" class="nav-btn w-full text-left flex items-center px-4 py-3 text-gray-400 hover:bg-gray-700 hover:text-white rounded-lg font-medium transition"><i class="fa-solid fa-chart-pie w-6"></i> Analytics</button>
+            </nav>
+        </div>
+        
+        <!-- CONTACT INFO & Support Button -->
+        <div class="p-4 border-t border-gray-700">
+            <div class="mb-3 text-xs text-gray-400 text-center">
+                <p><i class="fa-solid fa-phone mr-1"></i> +91 98765 43210</p>
+                <p class="mt-1"><i class="fa-solid fa-envelope mr-1"></i> support@smartroute.in</p>
+            </div>
+            <button id="open-support-btn" class="w-full text-left flex items-center justify-center px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg text-gray-300 font-medium transition shadow-md">
+                <i class="fa-solid fa-headset mr-2"></i> Support
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 flex flex-col overflow-y-auto relative bg-gray-900">
+        <div id="alert-container" class="absolute top-4 right-8 z-[9999] flex flex-col gap-2"></div>
+
+        <header class="h-16 bg-gray-800 border-b border-gray-700 flex items-center justify-between px-8 z-10 sticky top-0">
+            <h2 id="page-title" class="text-xl font-semibold text-white">National Command Center</h2>
+            <div class="flex items-center space-x-4">
+                <!-- REAL TIME CLOCK -->
+                <div class="bg-gray-700 text-gray-300 text-xs px-3 py-1.5 rounded-full border border-gray-600 flex items-center mr-2">
+                    <i class="fa-solid fa-clock mr-2 text-blue-400"></i> <span id="real-time-clock">Loading Time...</span>
+                </div>
+                
+                <button id="weather-btn" class="bg-gray-700 hover:bg-gray-600 text-xs px-3 py-1.5 rounded-full border border-gray-600 text-gray-300 transition flex items-center">
+                    <i class="fa-solid fa-cloud-sun mr-2"></i> Weather: Clear
+                </button>
+            </div>
+        </header>
+
+        <!-- VIEW 1: Dashboard -->
+        <div id="view-dashboard" class="view-section active p-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+                <!-- Stats -->
+                <div class="bg-gray-800 p-6 rounded-xl border border-gray-700 shadow-lg">
+                    <div class="text-gray-400 text-sm font-semibold mb-1">Queue Backlog</div>
+                    <div class="text-4xl font-black text-yellow-500" id="stat-pending">0</div>
+                </div>
+                <div class="bg-gray-800 p-6 rounded-xl border border-gray-700 shadow-lg">
+                    <div class="text-gray-400 text-sm font-semibold mb-1">Total Dispatched</div>
+                    <div class="text-4xl font-black text-green-400" id="stat-completed">0</div>
+                </div>
+                <div class="bg-gray-800 p-6 rounded-xl border border-gray-700 shadow-lg relative overflow-hidden group">
+                    <div class="text-gray-400 text-sm font-semibold mb-1">Highway Network</div>
+                    <div class="text-lg font-bold text-blue-400 mt-2 flex items-center" id="traffic-status-text">
+                        <i class="fa-solid fa-check-circle mr-2 text-green-500"></i> Clear (Optimal)
+                    </div>
+                </div>
+                <!-- ADD ORDER BUTTON -->
+                <div class="bg-blue-600 hover:bg-blue-500 p-6 rounded-xl shadow-lg flex flex-col justify-center items-center cursor-pointer transition transform hover:-translate-y-1" id="open-modal-btn">
+                    <i class="fa-solid fa-plus text-3xl text-white mb-2"></i>
+                    <div class="text-white font-bold">Add Order</div>
+                </div>
+            </div>
+
+            <!-- GRID FOR MAP & QUEUE -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                
+                <!-- 1. MAP CONTAINER -->
+                <div class="lg:col-span-2 bg-gray-800 rounded-xl border border-gray-700 flex flex-col overflow-hidden shadow-lg relative">
+                    <div class="p-4 border-b border-gray-700 flex justify-between items-center z-10 bg-gray-800">
+                        <h3 class="font-semibold text-gray-200"><i class="fa-solid fa-map-location-dot mr-2 text-blue-400"></i> Live Dispatch Map</h3>
+                        <div class="flex gap-2">
+                            <button id="toggle-traffic-btn" class="bg-gray-700 hover:bg-gray-600 border border-gray-600 text-gray-300 px-3 py-1 rounded text-sm transition">
+                                <i class="fa-solid fa-traffic-light mr-1"></i> Traffic Mode
+                            </button>
+                            <button id="calculate-route-btn" class="bg-blue-600 hover:bg-blue-500 text-white px-3 py-1 rounded text-sm font-bold shadow">
+                                <i class="fa-solid fa-route mr-1"></i> Check Route ETA
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div id="live-map" class="w-full h-[450px] relative z-0 bg-gray-900"></div>
+                    
+                    <!-- ROUTE INFO CARD -->
+                    <div id="route-info-card" class="hidden absolute top-[70px] left-4 bg-gray-900/95 backdrop-blur border border-gray-600 p-4 rounded-xl shadow-2xl z-[1000] w-72 transform transition-all">
+                        <h4 class="text-sm font-bold text-white border-b border-gray-700 pb-2 mb-3"><i class="fa-solid fa-stopwatch text-blue-400 mr-2"></i>Route Analytics</h4>
+                        <div class="grid grid-cols-2 gap-4 mb-3">
+                            <div>
+                                <p class="text-xs text-gray-400">Total Distance</p>
+                                <p class="text-lg font-black text-white" id="info-dist">0 KM</p>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-400">Avg. Speed</p>
+                                <p class="text-lg font-black text-yellow-400" id="info-speed">0 km/h</p>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4 border-t border-gray-700 pt-3">
+                            <div>
+                                <p class="text-xs text-gray-400">Est. Time (ETA)</p>
+                                <p class="text-lg font-black text-blue-400" id="info-eta">0h 0m</p>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-400">Est. Cost</p>
+                                <p class="text-lg font-black text-green-400" id="info-cost">₹0</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. QUEUE CONTAINER -->
+                <div class="bg-gray-800 rounded-xl border border-gray-700 flex flex-col h-[525px] shadow-lg">
+                    <div class="p-4 border-b border-gray-700 flex justify-between items-center z-10">
+                        <h3 class="font-semibold"><i class="fa-solid fa-list-check mr-2 text-yellow-500"></i> Priority Queue</h3>
+                        <div class="flex gap-2">
+                            <button id="batch-dispatch-btn" class="bg-purple-600 hover:bg-purple-500 text-white px-2 py-1 rounded text-xs font-bold shadow" title="Dispatch 3 at once">
+                                <i class="fa-solid fa-layer-group"></i> Batch
+                            </button>
+                            <button id="dispatch-action-btn" class="bg-green-600 hover:bg-green-500 text-white px-3 py-1 rounded text-sm font-bold shadow">
+                                Dispatch
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-4 flex-1 overflow-y-auto custom-scroll" id="live-queue-container"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- VIEW 2: Fleet Status -->
+        <div id="view-fleet" class="view-section hidden p-8">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-white">National Fleet Command</h2>
+                <button id="add-vehicle-btn" class="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-lg text-sm font-bold shadow flex items-center">
+                    <i class="fa-solid fa-plus mr-2"></i> Deploy New Truck
+                </button>
+            </div>
+            
+            <div class="bg-gray-800 rounded-xl border border-gray-700 overflow-hidden shadow-lg">
+                <table class="w-full text-left">
+                    <thead class="bg-gray-900 border-b border-gray-700 text-gray-400 uppercase text-xs">
+                        <tr><th class="p-4">Vehicle ID</th><th class="p-4">Status</th><th class="p-4">Fuel</th><th class="p-4">Current Load</th><th class="p-4">Destination Hub</th></tr>
+                    </thead>
+                    <tbody id="fleet-table-body" class="divide-y divide-gray-700"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- VIEW 3: Tracking Logs -->
+        <div id="view-tracking" class="view-section hidden p-8">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-white">Dispatch History & Details</h2>
+                <button id="export-csv-btn" class="bg-green-600 hover:bg-green-500 text-white px-4 py-2 rounded-lg text-sm font-bold shadow flex items-center">
+                    <i class="fa-solid fa-file-csv mr-2"></i> Download Full Report
+                </button>
+            </div>
+            <div class="bg-gray-800 rounded-xl border border-gray-700 p-6 shadow-lg min-h-[400px]" id="tracking-log-container">
+                <p class="text-gray-500 text-center py-20">Waiting for dispatches...</p>
+            </div>
+        </div>
+
+        <!-- VIEW 4: Analytics -->
+        <div id="view-analytics" class="view-section hidden p-8">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-white">Performance Analytics</h2>
+                
+                <div class="bg-gray-800 p-1 rounded-lg border border-gray-700 flex text-sm">
+                    <button class="analytics-tab active px-4 py-1.5 rounded-md font-medium text-white bg-blue-600 transition" data-range="day">Daily</button>
+                    <button class="analytics-tab px-4 py-1.5 rounded-md font-medium text-gray-400 hover:text-white transition" data-range="week">Weekly</button>
+                    <button class="analytics-tab px-4 py-1.5 rounded-md font-medium text-gray-400 hover:text-white transition" data-range="month">Monthly</button>
+                </div>
+            </div>
+            <div class="bg-gray-800 rounded-xl border border-gray-700 p-6 shadow-lg">
+                <div class="w-full h-[400px]"><canvas id="mainChart"></canvas></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="dsa-algorithms.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
