@@ -48,6 +48,7 @@ Major-Project/
     ├── Screenshot 2026-10-17 195449.png
     └── Screenshot 2026-10-17 195559.jpg
 
+```markdown
 ## 🚀 6. Installation and Execution
 To run and test the project locally, follow these steps:
 1. **📥 Clone or Download:** Clone the repository or extract the project ZIP archive.
