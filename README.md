@@ -60,6 +60,7 @@ To run and test the project locally, follow these steps:
 ## 📸 7. Screenshots / Output
 
 **🖥️ Dashboard Command Center:** Live pan-India network mapping and queue backlog statistics.
+
 ![Dashboard Command Center](screenshots/Screenshot%202026-10-17%20194904.png)
 
 **📈 Route Analytics Card:** Real-time distance, speed, ETA, and cost metrics for selected routes.
