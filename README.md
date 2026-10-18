@@ -60,10 +60,10 @@ To run and test the project locally, follow these steps:
 ## 📸 7. Screenshots / Output
 
 **🖥️ Dashboard Command Center:** Live pan-India network mapping and queue backlog statistics.
-![Dashboard Command Center](screenshots/Screenshot%202026-10-17%20194904.jpg)
+![Dashboard Command Center](screenshots/Screenshot%202026-10-17%20194904.png)
 
 **📈 Route Analytics Card:** Real-time distance, speed, ETA, and cost metrics for selected routes.
-![Route Analytics Card](screenshots/Screenshot%202026-10-17%20195257.jpg)
+![Route Analytics Card](screenshots/Screenshot%202026-10-17%20195257.png)
 
 **🚚 National Fleet Command:** Vehicle tracking, fuel levels, and current cargo load statuses.
 ![National Fleet Command](screenshots/Screenshot%202026-10-17%20195429.png)
@@ -75,7 +75,7 @@ To run and test the project locally, follow these steps:
 ![Performance Analytics 1](screenshots/Screenshot%202026-10-17%20195449.png)
 
 **📊 Additional Analytics & UI View:** 
-![Additional View](screenshots/Screenshot%202026-10-17%20195559.jpg)
+![Additional View](screenshots/Screenshot%202026-10-17%20195559.png)
 
 ## 🧠 8. DSA Concepts Used
 - **🔤 Arrays and Strings:** Managing hub coordinate lookups, string formatting for addresses, and data table filtering.
