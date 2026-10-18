@@ -58,11 +58,24 @@ To run and test the project locally, follow these steps:
    - Alternatively, open the folder in **Visual Studio Code** and use the **Live Server** extension to launch the dashboard at `http://127.0.0.1:5500`.
 
 ## 📸 7. Screenshots / Output
-- **🖥️ Dashboard Command Center:** Live pan-India network mapping and queue backlog statistics.
-- **📈 Route Analytics Card:** Real-time distance, speed, ETA, and cost metrics for selected routes.
-- **🚚 National Fleet Command:** Vehicle tracking, fuel levels, and current cargo load statuses.
-- **📋 Tracking Logs:** Comprehensive dispatch archives with customer and delivery details.
-- **📉 Performance Analytics:** Interactive gradient trend lines across custom time ranges.
+
+**🖥️ Dashboard Command Center:** Live pan-India network mapping and queue backlog statistics.
+![Dashboard Command Center](screenshots/Screenshot%202026-10-17%20194904.jpg)
+
+**📈 Route Analytics Card:** Real-time distance, speed, ETA, and cost metrics for selected routes.
+![Route Analytics Card](screenshots/Screenshot%202026-10-17%20195257.jpg)
+
+**🚚 National Fleet Command:** Vehicle tracking, fuel levels, and current cargo load statuses.
+![National Fleet Command](screenshots/Screenshot%202026-10-17%20195429.png)
+
+**📋 Tracking Logs:** Comprehensive dispatch archives with customer and delivery details.
+![Tracking Logs](screenshots/Screenshot%202026-10-17%20195439.png)
+
+**📉 Performance Analytics:** Interactive gradient trend lines across custom time ranges.
+![Performance Analytics 1](screenshots/Screenshot%202026-10-17%20195449.png)
+
+**📊 Additional Analytics & UI View:** 
+![Additional View](screenshots/Screenshot%202026-10-17%20195559.jpg)
 
 ## 🧠 8. DSA Concepts Used
 - **🔤 Arrays and Strings:** Managing hub coordinate lookups, string formatting for addresses, and data table filtering.
